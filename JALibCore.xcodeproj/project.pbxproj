@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		694AC89C171B38D90052ADDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694AC89B171B38D90052ADDD /* Foundation.framework */; };
-		694AC8A1171B38D90052ADDD /* JALib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 694AC8A0171B38D90052ADDD /* JALib.h */; };
 		694AC8AB171B38D90052ADDD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694AC8AA171B38D90052ADDD /* SenTestingKit.framework */; };
 		694AC8AD171B38D90052ADDD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694AC8AC171B38D90052ADDD /* UIKit.framework */; };
 		694AC8AE171B38D90052ADDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694AC89B171B38D90052ADDD /* Foundation.framework */; };
@@ -47,17 +46,16 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				694AC8A1171B38D90052ADDD /* JALib.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		690FAC76171CBE2300DF2BFE /* JALibCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JALibCore.h; sourceTree = "<group>"; };
 		694AC898171B38D90052ADDD /* libJALibCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJALibCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		694AC89B171B38D90052ADDD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		694AC89F171B38D90052ADDD /* JALibCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JALibCore-Prefix.pch"; sourceTree = "<group>"; };
-		694AC8A0171B38D90052ADDD /* JALib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JALib.h; sourceTree = "<group>"; };
 		694AC8A9171B38D90052ADDD /* JALibCoreTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JALibCoreTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		694AC8AA171B38D90052ADDD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		694AC8AC171B38D90052ADDD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -148,7 +146,7 @@
 		694AC89D171B38D90052ADDD /* JALibCore */ = {
 			isa = PBXGroup;
 			children = (
-				694AC8A0171B38D90052ADDD /* JALib.h */,
+				690FAC76171CBE2300DF2BFE /* JALibCore.h */,
 				694AC8C3171B49D90052ADDD /* Animation */,
 				694AC8C6171B4A240052ADDD /* Extensions */,
 				694AC8C4171B49E00052ADDD /* Helpers */,

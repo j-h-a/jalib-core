@@ -1,6 +1,6 @@
 //
-//  JALib.h
-//  JALib
+//  JALibCore.h
+//  JALibCore
 //
 //  Created by Jay Abbott on 2012-06-17.
 //  Copyright (c) 2012 Jay Abbott. All rights reserved.
@@ -9,11 +9,11 @@
 
 
 /**
- @mainpage JALib - Jay's library of useful Objective-C and iOS stuff.
+ @mainpage JALibCore - Jay's library of useful Objective-C and iOS stuff.
 
  @section intro Introduction
 
- Welcome to JALib.
+ Welcome to JALibCore.
  */
 
 

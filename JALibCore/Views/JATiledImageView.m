@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Jay Abbott. All rights reserved.
 //
 
-#import "JALib.h"
+#import "JATiledImageView.h"
 
 
 
