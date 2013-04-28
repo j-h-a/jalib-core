@@ -46,3 +46,14 @@ CGPoint CGPointNormalize(CGPoint p)
 {
 	return CGPointScale(p, 1.0f / CGPointLength(p));
 }
+
+CGPoint CGPointMakeFromSize(CGSize sz)
+{
+	return CGPointMake(sz.width, sz.height);
+}
+
+CGPoint CGPointMakeFromSizeScaled(CGSize sz, CGFloat s)
+{
+	return CGPointMake(sz.width * s, sz.height * s);
+}
+

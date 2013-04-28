@@ -15,3 +15,6 @@ extern CGFloat	CGPointCrossProduct(CGPoint a, CGPoint b);
 extern CGFloat	CGPointDotProduct(CGPoint a, CGPoint b);
 extern CGFloat	CGPointLength(CGPoint v);
 extern CGPoint	CGPointNormalize(CGPoint v);
+
+extern CGPoint	CGPointMakeFromSize(CGSize sz);
+extern CGPoint	CGPointMakeFromSizeScaled(CGSize sz, CGFloat s);
