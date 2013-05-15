@@ -10,12 +10,6 @@
 
 
 
-#ifndef LERP
-#define LERP(_a, _b, _alpha) ( ((_b) * (_alpha)) + ((_a) * (1.0f - (_alpha))) )
-#endif
-
-
-
 @protocol JAParametric
 
 - (CGFloat)valueForParameter:(CGFloat)input;
