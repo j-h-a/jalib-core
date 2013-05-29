@@ -206,7 +206,7 @@ __attribute__((constructor)) void JACurve_createConstantCurveClasses(void)
 	{
 		// Copy the next chunk of characters into the buffer
 		NSUInteger	i, remain;
-		remain = MIN(FORMAT_BUFFER_SIZE, fmtRemain);
+		remain = fmtRemain < FORMAT_BUFFER_SIZE ? fmtRemain : FORMAT_BUFFER_SIZE;
 		[fmt getCharacters:buffer range:NSMakeRange(fmtIdx, remain)];
 		fmtRemain -= remain;
 		// Iterate through this chunk
