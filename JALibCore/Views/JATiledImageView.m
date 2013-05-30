@@ -36,6 +36,7 @@
 	if(_tiledView == nil)
 	{
 		_tiledView = [[UIView alloc] initWithFrame:self.bounds];
+		_tiledView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[self addSubview:_tiledView];
 		[self sendSubviewToBack:_tiledView];
 		self.clipsToBounds = YES;
