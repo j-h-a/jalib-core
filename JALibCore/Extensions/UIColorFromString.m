@@ -89,6 +89,22 @@ UIColor* UIColorFromString(NSString* string)
 			a = [(NSString*)[components objectAtIndex:3] floatValue];
 		}
 	}
+	// Otherwise check for pattern image format: <image_file>
+	else if([string hasPrefix:@"<"] && [string hasSuffix:@">"])
+	{
+		// Trim the angle brackets and trim whitespace from the contents
+		NSString* trimmed = [string substringWithRange:NSMakeRange(1, string.length - 2)];
+		NSString* imgName = [trimmed stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+		// Try to load the image
+		UIImage* image = [UIImage imageNamed:imgName];
+		if(image != nil)
+		{
+			// Return pattern colour
+			return [UIColor colorWithPatternImage:image];
+		}
+	}
+
+	// Return the RGBA or Greyscale colour
 	return rgba ? [UIColor colorWithRed:r green:g blue:b alpha:a] : [UIColor colorWithWhite:g alpha:a];
 }
 

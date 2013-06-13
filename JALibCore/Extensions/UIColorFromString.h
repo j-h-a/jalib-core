@@ -22,6 +22,7 @@
  {g, a}       | Greyscale + Alpha | Each component is a number from 0.0 to 1.0
  #GA          | Greyscale + Alpha | Components are 4-bit hex numbers from 0-F
  #GGAA        | Greyscale + Alpha | Components are 8-bit hex numbers from 00-FF
+ <image_file> | Pattern Image     | Image file loaded with [UIImage imageNamed:]
  
  */
 UIColor*	UIColorFromString(NSString* str);
