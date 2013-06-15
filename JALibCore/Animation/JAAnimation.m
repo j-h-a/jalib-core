@@ -16,6 +16,7 @@
 
 @interface JAAnimation ()
 
+@property (strong, nonatomic)	NSMutableArray*			toAdd;
 @property (strong, nonatomic)	NSMutableArray*			toRemove;
 @property (strong, nonatomic)	NSMutableArray*			animatables;
 @property (strong, nonatomic)	NSMutableDictionary*	blockAnimationItems;
@@ -80,6 +81,7 @@
 	}
 
 	// Create the collections used to store animations
+	_toAdd = [NSMutableArray array];
 	_toRemove = [NSMutableArray array];
 	_animatables = [NSMutableArray array];
 	_blockAnimationItems = [NSMutableDictionary dictionary];
@@ -101,37 +103,17 @@
 
 - (void)displayLinkUpdate:(CADisplayLink*)dl
 {
-	// First remove any empty objects
-	for(JAWeakProxy* proxy in _toRemove)
-	{
-		[_animatables removeObject:proxy];
-	}
-
 	// Calculate the time delta
 	CGFloat timeDelta = (float)dl.duration * dl.frameInterval;
 
 	// Update the block-based animations
 	[self updateBlockAnimationItems:timeDelta];
 
-	// Then iterate through the animatables
-	for(JAWeakProxy* proxy in _animatables)
-	{
-		// Get the proxy target (the animatable)...
-		id<JAAnimatable> animatable = proxy.target;
-		if(animatable == nil)
-		{
-			// Remove the proxy if the target has gone away
-			[_toRemove addObject:proxy];
-		}
-		else
-		{
-			// Update the animatable
-			[animatable updateWithTimeInterval:timeDelta];
-		}
-	}
+	// Update animatables
+	[self updateAnimatableItems:timeDelta];
 
 	// Stop the animation updates if there are no current animations
-	if((_animatables.count + _blockAnimationItems.count) == 0)
+	if((_toAdd.count + _animatables.count + _blockAnimationItems.count) == 0)
 	{
 		_displayLink.paused = YES;
 	}
@@ -178,6 +160,34 @@
 	}
 }
 
+- (void)updateAnimatableItems:(CGFloat)timeDelta
+{
+	// First remove any empty objects or items removed since the last iteration
+	[_animatables removeObjectsInArray:_toRemove];
+	[_toRemove removeAllObjects];
+
+	// Then add any new items added during or since the previous iteration
+	[_animatables addObjectsFromArray:_toAdd];
+	[_toAdd removeAllObjects];
+
+	// Then iterate through the animatables
+	for(JAWeakProxy* proxy in _animatables)
+	{
+		// Get the proxy target (the animatable)...
+		id<JAAnimatable> animatable = proxy.target;
+		if(animatable == nil)
+		{
+			// Remove the proxy if the target has gone away
+			[_toRemove addObject:proxy];
+		}
+		else
+		{
+			// Update the animatable
+			[animatable updateWithTimeInterval:timeDelta];
+		}
+	}
+}
+
 
 
 #pragma mark -
@@ -187,7 +197,7 @@
 {
 	JAAnimation*	instance = [self sharedInstance];
 	// Add the animatable, wrapped in a weak proxy
-	[instance.animatables addObject:[JAWeakProxy weakProxyWithTarget:animatable]];
+	[instance.toAdd addObject:[JAWeakProxy weakProxyWithTarget:animatable]];
 	instance.displayLink.paused = NO;
 }
 
