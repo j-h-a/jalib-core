@@ -152,7 +152,7 @@ __attribute__((constructor)) void JACurve_createConstantCurveClasses(void)
 #pragma mark -
 #pragma mark Object lifecycle
 
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if(self == nil)
