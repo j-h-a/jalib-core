@@ -20,7 +20,7 @@
  a) a strong reference will prevent the receiver from ever being deallocated;
  b) an __unsafe_unretained reference in the block may try to access the receiver after it has been deallocated;
  c) a weak reference is ok, but may be nil so be careful.
- @param blk		The block to execute when performActionBlockForKey: is sent to the receiver.
+ @param blk		The block to execute when performActionBlockForKey: is sent to the receiver. If nil, any existing action block associated with the key is removed.
  @param key		The key used to identify the action block.
  */
 - (void)setActionBlock:(dispatch_block_t)blk forKey:(id<NSCopying>)key;
@@ -39,5 +39,15 @@
  Convenience method, equivalent to performActionBlockForKey: with the empty string @"" as the key.
  */
 - (void)performActionBlock;
+
+/**
+ Convenience method, equivalent to setActionBlock:forKey: with nil as the block and the same key.
+ */
+- (void)removeActionBlockForKey:(id<NSCopying>)key;
+
+/**
+ Convenience method, equivalent to setActionBlock:forKey: with nil as the block and the empty string @"" as the key.
+ */
+- (void)removeActionBlock;
 
 @end

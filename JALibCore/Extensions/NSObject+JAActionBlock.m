@@ -29,8 +29,16 @@
 		actionBlockDict = [NSMutableDictionary dictionary];
 		objc_setAssociatedObject(self, kKeyJAActionBlockDictionary, actionBlockDict, OBJC_ASSOCIATION_RETAIN);
 	}
-	// Add the block to the action block dictionary
-	[actionBlockDict setObject:blk forKey:key];
+
+	// Add (remove) the block to (from) the action block dictionary
+	if(blk != nil)
+	{
+		[actionBlockDict setObject:blk forKey:key];
+	}
+	else
+	{
+		[actionBlockDict removeObjectForKey:key];
+	}
 }
 
 - (void)performActionBlockForKey:(id<NSCopying>)key
@@ -55,6 +63,16 @@
 - (void)performActionBlock
 {
 	[self performActionBlockForKey:@""];
+}
+
+- (void)removeActionBlockForKey:(id<NSCopying>)key
+{
+	[self setActionBlock:nil forKey:key];
+}
+
+- (void)removeActionBlock
+{
+	[self setActionBlock:nil forKey:@""];
 }
 
 @end
