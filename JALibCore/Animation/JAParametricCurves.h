@@ -18,10 +18,104 @@
 
 
 
+/**
+ *   1 _|_
+ *      |    .'
+ *      |  .'
+ *   0 _|.'___|
+ *   ^  0     1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
 extern id<JAParametric>	JACurveLinear;
+
+/**
+ *   1 _|_       _
+ *      |     .'
+ *      |    /
+ *   0 _|__.'_____|
+ *   ^  0         1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
 extern id<JAParametric>	JACurveEaseInEaseOut;
+
+/**
+ *   1 _|_
+ *      |     /
+ *      |    /
+ *   0 _|__.'__|
+ *   ^  0      1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
 extern id<JAParametric>	JACurveEaseIn;
+
+/**
+ *   1 _|_    _
+ *      |  .'
+ *      | /
+ *   0 _|/_____|
+ *   ^  0      1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
 extern id<JAParametric>	JACurveEaseOut;
+
+/**
+ *   1 _|_       _
+ *      |     .'   `.
+ *      |    /       \
+ *   0 _|__.'_________`.__|
+ *   ^  0                 1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
+extern id<JAParametric>	JACurveBell;
+
+/**
+ *   1 _|_
+ *      |     '
+ *      |    /
+ *   0 _|__.'__|
+ *   ^  0      1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
+extern id<JAParametric>	JACurveParabolicAcceleration;
+
+/**
+ *   1 _|_    _
+ *      |  .'
+ *      | /
+ *   0 _|._____|
+ *   ^  0      1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
+extern id<JAParametric>	JACurveParabolicDeceleration;
+
+/**
+ *   1 _|_    _
+ *      |  .'   `.
+ *      | /       \
+ *   0 _|._________.|
+ *   ^  0           1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
+extern id<JAParametric>	JACurveParabolicPeak;
+
+/**
+ *   1 _|_
+ *      |     '
+ *      |    / \
+ *   0 _|__.'___`.__|
+ *   ^  0           1 <- Input parameter
+ *   |
+ *   Output parameter
+ */
+extern id<JAParametric>	JACurveParabolicBounce;
 
 
 

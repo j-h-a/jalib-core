@@ -73,6 +73,70 @@
 }
 @end
 
+@interface _constCurve_JACurveBell : NSObject<JAParametric>
+@end
+@implementation _constCurve_JACurveBell
+- (CGFloat)valueForParameter:(CGFloat)s
+{
+	if(s <= 0.0f) return 0.0f;
+	if(s >= 1.0f) return 0.0f;
+	// From 0.0 to 0.5 same as a full ease-in ease-out, then a reversed ease-in ease-out from 0.5 to 1.0
+	if(s <= 0.5f) return [JACurveEaseInEaseOut valueForParameter:(2 * s)];
+	return [JACurveEaseInEaseOut valueForParameter:2 - (2 * s)];
+}
+@end
+
+@interface _constCurve_JACurveParabolicAcceleration : NSObject<JAParametric>
+@end
+@implementation _constCurve_JACurveParabolicAcceleration
+- (CGFloat)valueForParameter:(CGFloat)s
+{
+	if(s <= 0.0f) return 0.0f;
+	if(s >= 1.0f) return 1.0f;
+	// Simple s-squared.
+	return s * s;
+}
+@end
+
+@interface _constCurve_JACurveParabolicDeceleration : NSObject<JAParametric>
+@end
+@implementation _constCurve_JACurveParabolicDeceleration
+- (CGFloat)valueForParameter:(CGFloat)s
+{
+	if(s <= 0.0f) return 0.0f;
+	if(s >= 1.0f) return 1.0f;
+	// Simple 1 - (1 - s)^2
+	float oneMinusS = 1.0f - s;
+	return 1.0f - (oneMinusS * oneMinusS);
+}
+@end
+
+@interface _constCurve_JACurveParabolicPeak : NSObject<JAParametric>
+@end
+@implementation _constCurve_JACurveParabolicPeak
+- (CGFloat)valueForParameter:(CGFloat)s
+{
+	if(s <= 0.0f) return 0.0f;
+	if(s >= 1.0f) return 0.0f;
+	// From 0.0 to 0.5 same as a full parabolic deceleration, then a reversed parabolic deceleration from 0.5 to 1.0
+	if(s <= 0.5f) return [JACurveParabolicDeceleration valueForParameter:(2 * s)];
+	return [JACurveParabolicDeceleration valueForParameter:2 - (2 * s)];
+}
+@end
+
+@interface _constCurve_JACurveParabolicBounce : NSObject<JAParametric>
+@end
+@implementation _constCurve_JACurveParabolicBounce
+- (CGFloat)valueForParameter:(CGFloat)s
+{
+	if(s <= 0.0f) return 0.0f;
+	if(s >= 1.0f) return 0.0f;
+	// From 0.0 to 0.5 same as a full parabolic acceleration, then a reversed parabolic acceleration from 0.5 to 1.0
+	if(s <= 0.5f) return [JACurveParabolicAcceleration valueForParameter:(2 * s)];
+	return [JACurveParabolicAcceleration valueForParameter:2 - (2 * s)];
+}
+@end
+
 @interface JACurveComposite_curveSegment : NSObject
 @property (assign, nonatomic)	CGFloat				endPoint;
 @property (assign, nonatomic)	CGFloat				endValue;
@@ -90,14 +154,24 @@ id<JAParametric>	JACurveLinear;
 id<JAParametric>	JACurveEaseInEaseOut;
 id<JAParametric>	JACurveEaseIn;
 id<JAParametric>	JACurveEaseOut;
+id<JAParametric>	JACurveBell;
+id<JAParametric>	JACurveParabolicAcceleration;
+id<JAParametric>	JACurveParabolicDeceleration;
+id<JAParametric>	JACurveParabolicPeak;
+id<JAParametric>	JACurveParabolicBounce;
 
 __attribute__((constructor)) void JACurve_createConstantCurveClasses(void);
 __attribute__((constructor)) void JACurve_createConstantCurveClasses(void)
 {
-	JACurveLinear			= [_constCurve_JACurveLinear new];
-	JACurveEaseInEaseOut	= [_constCurve_JACurveEaseInEaseOut new];
-	JACurveEaseIn			= [_constCurve_JACurveEaseIn new];
-	JACurveEaseOut			= [_constCurve_JACurveEaseOut new];
+	JACurveLinear					= [_constCurve_JACurveLinear new];
+	JACurveEaseInEaseOut			= [_constCurve_JACurveEaseInEaseOut new];
+	JACurveEaseIn					= [_constCurve_JACurveEaseIn new];
+	JACurveEaseOut					= [_constCurve_JACurveEaseOut new];
+	JACurveBell						= [_constCurve_JACurveBell new];
+	JACurveParabolicAcceleration	= [_constCurve_JACurveParabolicAcceleration new];
+	JACurveParabolicDeceleration	= [_constCurve_JACurveParabolicDeceleration new];
+	JACurveParabolicPeak			= [_constCurve_JACurveParabolicPeak new];
+	JACurveParabolicBounce			= [_constCurve_JACurveParabolicBounce new];
 }
 
 
