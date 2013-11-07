@@ -19,7 +19,6 @@
 		694AC8D5171B4D8E0052ADDD /* CGPoint+Vector.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8CE171B4D8E0052ADDD /* CGPoint+Vector.m */; };
 		694AC8D6171B4D8E0052ADDD /* NSObject+JAActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8D0171B4D8E0052ADDD /* NSObject+JAActionBlock.m */; };
 		694AC8D7171B4D8E0052ADDD /* NSObject+JADestructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8D2171B4D8E0052ADDD /* NSObject+JADestructor.m */; };
-		694AC8D8171B4D8E0052ADDD /* UIColorFromString.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8D4171B4D8E0052ADDD /* UIColorFromString.m */; };
 		694AC8E1171B4DE20052ADDD /* JAMessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8DA171B4DE20052ADDD /* JAMessageInterceptor.m */; };
 		694AC8E2171B4DE20052ADDD /* JARecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8DC171B4DE20052ADDD /* JARecycler.m */; };
 		694AC8E3171B4DE20052ADDD /* JAReusable.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8DE171B4DE20052ADDD /* JAReusable.m */; };
@@ -27,6 +26,7 @@
 		694AC8EA171B4DEB0052ADDD /* JABorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8E7171B4DEB0052ADDD /* JABorderView.m */; };
 		694AC8EB171B4DEB0052ADDD /* JATiledImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8E9171B4DEB0052ADDD /* JATiledImageView.m */; };
 		694AC8EE171B527C0052ADDD /* JADynamicProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 694AC8ED171B527C0052ADDD /* JADynamicProperties.m */; };
+		69D7C6A2182B22A6009734CA /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D7C6A1182B22A6009734CA /* UIColor+Helpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +73,6 @@
 		694AC8D0171B4D8E0052ADDD /* NSObject+JAActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JAActionBlock.m"; path = "Extensions/NSObject+JAActionBlock.m"; sourceTree = "<group>"; };
 		694AC8D1171B4D8E0052ADDD /* NSObject+JADestructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JADestructor.h"; path = "Extensions/NSObject+JADestructor.h"; sourceTree = "<group>"; };
 		694AC8D2171B4D8E0052ADDD /* NSObject+JADestructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JADestructor.m"; path = "Extensions/NSObject+JADestructor.m"; sourceTree = "<group>"; };
-		694AC8D3171B4D8E0052ADDD /* UIColorFromString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIColorFromString.h; path = Extensions/UIColorFromString.h; sourceTree = "<group>"; };
-		694AC8D4171B4D8E0052ADDD /* UIColorFromString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIColorFromString.m; path = Extensions/UIColorFromString.m; sourceTree = "<group>"; };
 		694AC8D9171B4DE20052ADDD /* JAMessageInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAMessageInterceptor.h; path = Helpers/JAMessageInterceptor.h; sourceTree = "<group>"; };
 		694AC8DA171B4DE20052ADDD /* JAMessageInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAMessageInterceptor.m; path = Helpers/JAMessageInterceptor.m; sourceTree = "<group>"; };
 		694AC8DB171B4DE20052ADDD /* JARecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JARecycler.h; path = Helpers/JARecycler.h; sourceTree = "<group>"; };
@@ -89,6 +87,8 @@
 		694AC8E9171B4DEB0052ADDD /* JATiledImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JATiledImageView.m; path = Views/JATiledImageView.m; sourceTree = "<group>"; };
 		694AC8EC171B527C0052ADDD /* JADynamicProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JADynamicProperties.h; path = Helpers/JADynamicProperties.h; sourceTree = "<group>"; };
 		694AC8ED171B527C0052ADDD /* JADynamicProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JADynamicProperties.m; path = Helpers/JADynamicProperties.m; sourceTree = "<group>"; };
+		69D7C6A0182B22A6009734CA /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Helpers.h"; path = "Extensions/UIColor+Helpers.h"; sourceTree = "<group>"; };
+		69D7C6A1182B22A6009734CA /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Helpers.m"; path = "Extensions/UIColor+Helpers.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,8 +231,8 @@
 				694AC8D0171B4D8E0052ADDD /* NSObject+JAActionBlock.m */,
 				694AC8D1171B4D8E0052ADDD /* NSObject+JADestructor.h */,
 				694AC8D2171B4D8E0052ADDD /* NSObject+JADestructor.m */,
-				694AC8D3171B4D8E0052ADDD /* UIColorFromString.h */,
-				694AC8D4171B4D8E0052ADDD /* UIColorFromString.m */,
+				69D7C6A0182B22A6009734CA /* UIColor+Helpers.h */,
+				69D7C6A1182B22A6009734CA /* UIColor+Helpers.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -341,12 +341,12 @@
 				694AC8D5171B4D8E0052ADDD /* CGPoint+Vector.m in Sources */,
 				694AC8D6171B4D8E0052ADDD /* NSObject+JAActionBlock.m in Sources */,
 				694AC8D7171B4D8E0052ADDD /* NSObject+JADestructor.m in Sources */,
-				694AC8D8171B4D8E0052ADDD /* UIColorFromString.m in Sources */,
 				694AC8E1171B4DE20052ADDD /* JAMessageInterceptor.m in Sources */,
 				694AC8E2171B4DE20052ADDD /* JARecycler.m in Sources */,
 				694AC8E3171B4DE20052ADDD /* JAReusable.m in Sources */,
 				694AC8E4171B4DE20052ADDD /* JAWeakProxy.m in Sources */,
 				694AC8EA171B4DEB0052ADDD /* JABorderView.m in Sources */,
+				69D7C6A2182B22A6009734CA /* UIColor+Helpers.m in Sources */,
 				694AC8EB171B4DEB0052ADDD /* JATiledImageView.m in Sources */,
 				694AC8EE171B527C0052ADDD /* JADynamicProperties.m in Sources */,
 			);

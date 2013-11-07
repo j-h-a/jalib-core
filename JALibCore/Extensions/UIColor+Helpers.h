@@ -1,5 +1,5 @@
 //
-//  UIColorFromString.h
+//  UIColor+Helpers.h
 //  JALib
 //
 //  Created by Jay Abbott on 2012-06-21.
@@ -26,3 +26,10 @@
  
  */
 UIColor*	UIColorFromString(NSString* str);
+
+/**
+ Creates a new UIColor by interpolating between two UIColor objects
+
+ The UIColor objects must be in the RGB colorspace.
+ */
+UIColor* UIColorByInterpolatingColors(UIColor* c0, UIColor* c1, CGFloat alpha);

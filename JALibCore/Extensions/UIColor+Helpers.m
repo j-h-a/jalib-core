@@ -1,12 +1,18 @@
 //
-//  UIColorFromString.m
+//  UIColor+Helpers.m
 //  JALib
 //
 //  Created by Jay Abbott on 2012-06-21.
 //  Copyright (c) 2012 Jay Abbott. All rights reserved.
 //
 
-#import "UIColorFromString.h"
+#import "UIColor+Helpers.h"
+
+
+
+#ifndef LERP
+#define LERP(_a, _b, _alpha) ( ((_b) * (_alpha)) + ((_a) * (1.0f - (_alpha))) )
+#endif
 
 
 
@@ -108,3 +114,16 @@ UIColor* UIColorFromString(NSString* string)
 	return rgba ? [UIColor colorWithRed:r green:g blue:b alpha:a] : [UIColor colorWithWhite:g alpha:a];
 }
 
+UIColor* UIColorByInterpolatingColors(UIColor* c0, UIColor* c1, CGFloat alpha)
+{
+	CGFloat rgba0[4];
+	CGFloat rgba1[4];
+	CGFloat rgbaOut[4];
+	[c0 getRed:&rgba0[0] green:&rgba0[1] blue:&rgba0[2] alpha:&rgba0[3]];
+	[c1 getRed:&rgba1[0] green:&rgba1[1] blue:&rgba1[2] alpha:&rgba1[3]];
+	rgbaOut[0] = LERP(rgba0[0], rgba1[0], alpha);
+	rgbaOut[1] = LERP(rgba0[1], rgba1[1], alpha);
+	rgbaOut[2] = LERP(rgba0[2], rgba1[2], alpha);
+	rgbaOut[3] = LERP(rgba0[3], rgba1[3], alpha);
+	return [UIColor colorWithRed:rgbaOut[0] green:rgbaOut[1] blue:rgbaOut[2] alpha:rgbaOut[3]];
+}

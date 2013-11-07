@@ -25,7 +25,7 @@
 #import "CGPoint+Vector.h"
 #import "NSObject+JAActionBlock.h"
 #import "NSObject+JADestructor.h"
-#import "UIColorFromString.h"
+#import "UIColor+Helpers.h"
 // Helpers
 #import "JADynamicProperties.h"
 #import "JAMessageInterceptor.h"
