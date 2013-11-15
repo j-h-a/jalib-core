@@ -15,8 +15,9 @@
 #pragma mark -
 #pragma mark Private functions
 
-// Dynamic properties dictionary
+// Dictionaries for iVar Names (stored against the Class) and Dynamic Properties (stored against instances)
 NSMutableDictionary*	JADynamicProperties_getDictionaryForClass(Class cls);
+NSMutableDictionary*	JADynamicProperties_getDictionaryForObject(id obj);
 // Dynamic properties accessors
 id					JADynamicProperties_getObject(id self, SEL _cmd);
 void				JADynamicProperties_setObject(id self, SEL _cmd, id value);
@@ -50,16 +51,30 @@ void				JADynamicProperties_setDouble(id self, SEL _cmd, double value);
 #pragma mark -
 #pragma mark Private functions implementation
 
-// Get the dynamic properties dictionary or create it if it doesn't already exist
+// Get the iVar names dictionary or create it if it doesn't already exist
 NSMutableDictionary* JADynamicProperties_getDictionaryForClass(Class cls)
 {
-#define kKeyDynamicProperties	@"JADynamicPropertiesDictionary"
-	NSMutableDictionary* dynProps = objc_getAssociatedObject(cls, kKeyDynamicProperties);
+#define kKey_iVarNames	@"JADynamicProperties_iVarNamesDictionary"
+	NSMutableDictionary* iVarNames = objc_getAssociatedObject(cls, kKey_iVarNames);
+	if(iVarNames == nil)
+	{
+		// Create the iVar names dictionary and add it to the class object
+		iVarNames = [NSMutableDictionary dictionary];
+		objc_setAssociatedObject(cls, kKey_iVarNames, iVarNames, OBJC_ASSOCIATION_RETAIN);
+	}
+	return iVarNames;
+}
+
+// Get the dynamic properties dictionary or create it if it doesn't already exist
+NSMutableDictionary* JADynamicProperties_getDictionaryForObject(id obj)
+{
+#define kKey_Properties	@"JADynamicProperties_PropertiesDictionary"
+	NSMutableDictionary* dynProps = objc_getAssociatedObject(obj, kKey_Properties);
 	if(dynProps == nil)
 	{
-		// Create the dynamic properties dictionary and add it to the class object
+		// Create the dynamic properties dictionary and add it to the object
 		dynProps = [NSMutableDictionary dictionary];
-		objc_setAssociatedObject(cls, kKeyDynamicProperties, dynProps, OBJC_ASSOCIATION_RETAIN);
+		objc_setAssociatedObject(obj, kKey_Properties, dynProps, OBJC_ASSOCIATION_RETAIN);
 	}
 	return dynProps;
 }
@@ -67,12 +82,13 @@ NSMutableDictionary* JADynamicProperties_getDictionaryForClass(Class cls)
 // Dynamic property accessors for objects (id) - also used by scalar accessors (with an NSNumber object)
 id JADynamicProperties_getObject(id self, SEL _cmd)
 {
-	NSMutableDictionary* dynProps = JADynamicProperties_getDictionaryForClass([self class]);
-	if(dynProps != nil)
+	NSMutableDictionary* iVarNames = JADynamicProperties_getDictionaryForClass([self class]);
+	if(iVarNames != nil)
 	{
-		NSString* iVarName = [dynProps objectForKey:NSStringFromSelector(_cmd)];
+		NSString* iVarName = [iVarNames objectForKey:NSStringFromSelector(_cmd)];
 		if(iVarName != nil)
 		{
+			NSMutableDictionary* dynProps = JADynamicProperties_getDictionaryForObject(self);
 			return [dynProps objectForKey:iVarName];
 		}
 	}
@@ -81,13 +97,21 @@ id JADynamicProperties_getObject(id self, SEL _cmd)
 
 void JADynamicProperties_setObject(id self, SEL _cmd, id obj)
 {
-	NSMutableDictionary* dynProps = JADynamicProperties_getDictionaryForClass([self class]);
-	if(dynProps != nil)
+	NSMutableDictionary* iVarNames = JADynamicProperties_getDictionaryForClass([self class]);
+	if(iVarNames != nil)
 	{
-		NSString* iVarName = [dynProps objectForKey:NSStringFromSelector(_cmd)];
+		NSString* iVarName = [iVarNames objectForKey:NSStringFromSelector(_cmd)];
 		if(iVarName != nil)
 		{
-			[dynProps setObject:obj forKey:iVarName];
+			NSMutableDictionary* dynProps = JADynamicProperties_getDictionaryForObject(self);
+			if(obj == nil)
+			{
+				[dynProps removeObjectForKey:iVarName];
+			}
+			else
+			{
+				[dynProps setObject:obj forKey:iVarName];
+			}
 		}
 	}
 }
@@ -232,14 +256,14 @@ void JADynamicProperties_setDouble(id self, SEL _cmd, double value)
 	{
 		return;
 	}
-	// Get the dynamic properties dictionary
-	NSMutableDictionary* dynProps = JADynamicProperties_getDictionaryForClass(cls);
+	// Get the iVar names dictionary
+	NSMutableDictionary* iVarNames = JADynamicProperties_getDictionaryForClass(cls);
 	// Generate the iVar name and associate the selector names to the ivar
 	NSString*	iVarName = [@"_JADynamicProperties_iVar_" stringByAppendingString:NSStringFromSelector(getter)];
-	[dynProps setObject:iVarName forKey:NSStringFromSelector(getter)];
+	[iVarNames setObject:iVarName forKey:NSStringFromSelector(getter)];
 	if(setter != nil)
 	{
-		[dynProps setObject:iVarName forKey:NSStringFromSelector(setter)];
+		[iVarNames setObject:iVarName forKey:NSStringFromSelector(setter)];
 	}
 	// Register the accessors
 	switch(typ)
