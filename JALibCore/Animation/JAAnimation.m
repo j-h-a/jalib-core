@@ -195,6 +195,9 @@
 
 + (void)addAnimatable:(id<JAAnimatable>)animatable
 {
+	// Remove this animatable if already present
+	[self removeAnimatable:animatable];
+
 	JAAnimation*	instance = [self sharedInstance];
 	// Add the animatable, wrapped in a weak proxy
 	[instance.toAdd addObject:[JAWeakProxy weakProxyWithTarget:animatable]];
